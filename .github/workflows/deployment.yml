@@ -23,10 +23,12 @@ jobs:
         run: cd client && npm install
       - name: lint
         run: npm run lint
-      - name: test
-        run: cd client && npm run test
       - name: build ui
         run: npm run build:ui
+      - name: test
+        run: cd client && npm run test
+      - name: start server for e2e test
+        run: npm run dev
       - name: e2e test
         run: npm run e2e:test
       - uses: AkhileshNS/heroku-deploy@v3.12.12
