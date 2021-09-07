@@ -23,6 +23,8 @@ jobs:
         run: cd client && npm install
       - name: lint
         run: npm run lint
+      - name: test
+        run: cd client && npm run test
       - name: build ui
         run: npm run build:ui
       - uses: AkhileshNS/heroku-deploy@v3.12.12
