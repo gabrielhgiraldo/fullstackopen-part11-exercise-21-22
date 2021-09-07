@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "part3 of fullstackopen course",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "cd client && rm -rf build && npm run build && mv build ../build",
+    "deploy": "git push heroku main",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+    "logs:prod": "heroku logs --tail -a hidden-oasis-09339",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielhgiraldo/fullstackopen-part11-exercise-21-22.git"
+  },
+  "author": "Gabriel Giraldo-Wingler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabrielhgiraldo/fullstackopen-part11-exercise-21-22/issues"
+  },
+  "homepage": "https://github.com/gabrielhgiraldo/fullstackopen-part11-exercise-21-22#readme",
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.9",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.10.0",
+    "static": "^2.0.0"
+  }
+}
