@@ -26,3 +26,11 @@ jobs:
       - name: build ui
         run: npm run build:ui
       - uses: AkhileshNS/heroku-deploy@v3.12.12
+        if: ${{github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip')}}
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "hidden-oasis-09339"
+          heroku_email: "gabrielhgiraldo@gmail.com"
+          healthcheck: 'https://hidden-oasis-09339.herokuapp.com/health'
+          checkstring: 'ok'
+          rollbackonhealthcheckfailed: true
