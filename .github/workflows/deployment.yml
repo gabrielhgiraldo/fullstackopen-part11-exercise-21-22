@@ -27,6 +27,8 @@ jobs:
         run: cd client && npm run test
       - name: build ui
         run: npm run build:ui
+      - name: e2e test
+        run: npm run e2e:test
       - uses: AkhileshNS/heroku-deploy@v3.12.12
         if: ${{github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip')}}
         with:
