@@ -3,10 +3,10 @@ name: Deployment pipeline
 on:
   push:
     branches:
-      - master
+      - main
 
   pull_request:
-    branches: [master]
+    branches: [main]
     types: [opened, synchronized]
 
 jobs:
@@ -17,8 +17,10 @@ jobs:
       - uses: actions/setup-node@v1
         with: 
           node-version: '12.x'
-      - name: npm install
+      - name: npm install server
         run: npm install
+      - name: npm install client
+        run: cd client && npm install
       - name: lint
         run: npm run lint
       - name: build ui
