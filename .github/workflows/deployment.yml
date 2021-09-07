@@ -27,10 +27,15 @@ jobs:
         run: npm run build:ui
       - name: test
         run: cd client && npm run test
-      - name: start server for e2e test
-        run: npm run dev
       - name: e2e test
-        run: npm run e2e:test
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run e2e:test
+          start: npm run dev
+          wait-on: http://localhost:${{secrets.PORT}}
+        env:
+          PORT: ${{secrets.PORT}}
+          MONGODB_URI: ${{secrets.MONGODB_URI}}
       - uses: AkhileshNS/heroku-deploy@v3.12.12
         if: ${{github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip')}}
         with:
